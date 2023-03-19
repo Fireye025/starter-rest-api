@@ -26,15 +26,12 @@ app.get('/scores', async (req, res) => {
     var response = []
     for(var item in items["results"]){
       if(items["results"][item].collection == 'scores'){
-        console.log(items["results"][item].key)
         const score = await scores.get(items["results"][item].key)
         response.push(score)
       }
     }
-    // console.log(items["results"][0].collection)
-    // console.log(items["results"][0].key)
     console.log(JSON.stringify(response))
-    res.json(items).end()
+    res.json(response).end()
   })
 
 app.post('/scores', async (req, res) => {
