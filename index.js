@@ -25,15 +25,14 @@ app.get('/scores', async (req, res) => {
     const items = await scores.list()
     var response = []
     for(var item in items["results"]){
-      console.log(item)
-      if(item.collection == 'scores'){
-        console.log(item.key)
-        const score = await scores.get(item.key)
+      if(items["results"][item].collection == 'scores'){
+        console.log(items["results"][item].key)
+        const score = await scores.get(items["results"][item].key)
         response.push(score)
       }
     }
-    console.log(items["results"][0].collection)
-    console.log(items["results"][0].key)
+    // console.log(items["results"][0].collection)
+    // console.log(items["results"][0].key)
     console.log(JSON.stringify(response))
     res.json(items).end()
   })
