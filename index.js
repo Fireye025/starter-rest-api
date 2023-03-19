@@ -25,6 +25,7 @@ app.get('/scores', async (req, res) => {
     const items = await scores.list()
     var response = []
     for(var item in items["results"]){
+      console.log(item)
       if(item.collection == 'scores'){
         console.log(item.key)
         const score = await scores.get(item.key)
