@@ -62,10 +62,16 @@ const scores = db.collection("scores")
 //   res.json(items).end()
 // })
 
-app.get('/score', async (req, res) => {
+app.get('/scores', async (req, res) => {
     const items = await scores.list()
     console.log(JSON.stringify(items, null, 2))
     res.json(items).end()
+  })
+
+app.post('/scores', async (req, res) => {
+    const item = await scores.set(req.body.name, req.body.score)
+    console.log(JSON.stringify(item, null, 2))
+    res.json(item).end()
   })
 
 // Catch all handler for all other request.
