@@ -31,7 +31,8 @@ app.get('/scores', async (req, res) => {
         response.push(score)
       }
     }
-    console.log(items["results"][0])
+    console.log(items["results"][0].collection)
+    console.log(items["results"][0].key)
     console.log(JSON.stringify(response))
     res.json(items).end()
   })
