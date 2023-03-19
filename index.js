@@ -23,8 +23,10 @@ const scores = db.collection("scores")
 
 app.get('/scores', async (req, res) => {
     const items = await scores.list()
-    for(user in items.results.scores){
-      console.log(user)
+    for(var item in items.results){
+      if(item.collection == "scores"){
+        console.log(item.key)
+      }
     }
     console.log(JSON.stringify(items))
     res.json(items).end()
