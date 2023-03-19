@@ -28,7 +28,7 @@ app.get('/scores', async (req, res) => {
   })
 
 app.post('/scores', async (req, res) => {
-    const item = await scores.set(req.body.name, {score: req.body.props.score})
+    const item = await scores.set(req.body.name, {score: req.body.score})
     console.log(JSON.stringify(item))
     res.json(item).end()
   })
