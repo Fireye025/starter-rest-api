@@ -35,9 +35,14 @@ app.get('/scores', async (req, res) => {
   })
 
 app.post('/scores', async (req, res) => {
-    const item = await scores.set(req.body.name, {score: req.body.score})
-    console.log(JSON.stringify(item))
-    res.json(item).end()
+    const actualScore = await scores.get(req.body.name)
+    if(actualScore == null || actualScore.score < req.body.score){ 
+      const item = await scores.set(req.body.name, {score: req.body.score})
+      console.log(JSON.stringify(item))
+      res.json(item).end()
+    }else{
+      res.json(actualScore).end()
+    }
   })
 
 // Catch all handler for all other request.
